@@ -123,3 +123,7 @@ button {
   justify-content: flex-start;
   align-items: flex-end;
 }
+
+ul{
+  list-style: none;
+}

@@ -7,6 +7,9 @@ const handleLogin = async (req,res)=>{
 
     const cookies = req.cookies
 
+    console.log(cookies)
+    console.log(cookies.jwt)
+
     const {user,pwd} = req.body
     if(!user||!pwd) return res.status(400).json({"message":"username and password required"})
     const foundUser = await User.findOne({username:user}).exec()

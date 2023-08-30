@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hook/useAuth";
+import axios from "../api/axios";
 
-const LOGIN_URL = "http://localhost:5000/auth";
+
 
 const Login = () => {
   const { setAuth } = useAuth();
@@ -32,7 +33,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        LOGIN_URL,
+        '/auth',
         JSON.stringify({ user, pwd }),
         {
           headers: {
@@ -41,7 +42,7 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response))
+      console.log(JSON.stringify(response?.data))
       const accessToken = response?.data?.accessToken;
       const roles = response?.data?.roles;
       setAuth({ user, pwd, roles, accessToken });
@@ -102,7 +103,7 @@ const Login = () => {
           <br />
           <span className="line">
             {/*put router link here*/}
-            <NavLink replace  to="register">Sign Up</NavLink>
+            <NavLink replace  to="/register">Sign Up</NavLink>
           </span>
         </p>
       </section>
